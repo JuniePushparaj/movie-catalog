@@ -23,7 +23,7 @@ export const search = (text, page) => {
                 dispatch(searchSuccess(result));
             }
             else{
-                dispatch(searchFailed('No Data.'));
+                dispatch(searchFailed('Movie not found!'));
             }
         })
         .catch(()=>{

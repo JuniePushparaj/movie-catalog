@@ -30,7 +30,7 @@ class MovieCatalog extends React.Component {
     }
 
     onChange(event) {
-        this.setState({ searchText: event.target.value }, () => {
+        this.setState({ searchText: event.target.value, page:1 }, () => {
             this.searchMovies();
         })
     }
@@ -49,6 +49,7 @@ class MovieCatalog extends React.Component {
 
     render() {
         const { isFetching, movies, errorMsg, totalResults } = this.props;
+        const pageCount = Math.ceil((parseInt(totalResults)/BaseConfig.pagination));
         return (
             <div>
                 <div className="movie-catalog">
@@ -87,13 +88,13 @@ class MovieCatalog extends React.Component {
                                 : null
                         }
                         {
-                            movies.length > 1 ?
+                            pageCount > 1 ?
                                 (<ReactPaginate
                                     previousLabel={'<'}
                                     nextLabel={'>'}
                                     breakLabel={'...'}
                                     breakClassName={'break-me'}
-                                    pageCount={(parseInt(totalResults)%BaseConfig.pagination)+1}
+                                    pageCount={pageCount}
                                     marginPagesDisplayed={2}
                                     pageRangeDisplayed={5}
                                     onPageChange={this.handlePageClick}
