@@ -1,6 +1,6 @@
 const BaseConfig = {
     searchService:{
-        host: 'http://www.omdbapi.com/',
+        host: 'https://www.omdbapi.com/',
         i: 'tt3896198',
         apikey: 'fa281222'
     },
