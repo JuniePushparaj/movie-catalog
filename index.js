@@ -20,7 +20,7 @@ app.use(function (req, res, next) {
 });
 
 var port = process.env.PORT || 8085;
-app.use(express.static(__dirname + '/build'));
+app.use(express.static(__dirname + '/dist'));
 
 app.listen(port,function(err){
   if(err){
