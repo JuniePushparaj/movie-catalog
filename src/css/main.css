@@ -1,0 +1,31 @@
+.pagination {
+    display: inline-block;
+  }
+  
+  .pagination li {
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px;
+  }
+
+  .pagination li a {
+      color: black
+  }
+  .pagination li.active {
+    background-color:#007bff;
+    color: white;
+  }
+  
+  .pagination a:hover:not(.active) {background-color: #ddd;}
+
+  .dropdown a{
+      color: white;
+  }
+
+  .movie-catalog {
+    background-color:#007bff;
+    color: white;
+    padding: 5px 15px 5px 15px;
+  }
+  

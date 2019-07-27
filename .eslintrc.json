@@ -1,0 +1,30 @@
+{
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "plugins": ["react"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "settings": {
+        "react": {
+          "createClass": "createReactClass", 
+                                             
+          "pragma": "React",  
+          "version": "detect", 
+                               
+                               
+                               
+          "flowVersion": "0.53" 
+        }
+    }
+}
