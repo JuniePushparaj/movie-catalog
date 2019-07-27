@@ -1,1 +1,1 @@
-web: node index.jsvar
+web: node index.js
