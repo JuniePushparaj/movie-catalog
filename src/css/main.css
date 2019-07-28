@@ -28,4 +28,10 @@
     color: white;
     padding: 5px 15px 5px 15px;
   }
+
+  @media only screen and (min-width: 768px), (min-width: 992px), (min-width: 1200px)  {
+    .no-mobile{
+      text-align: right;
+    }
+  } 
   

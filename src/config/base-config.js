@@ -5,7 +5,7 @@ const BaseConfig = {
         apikey: 'fa281222'
     },
     noImageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png',
-    userName: 'Junie',
+    userName: 'Guest',
     moviesPerRow: 6,
     pagination: 10
 }

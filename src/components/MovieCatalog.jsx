@@ -60,7 +60,7 @@ class MovieCatalog extends React.Component {
                             <FormControl style={{width:"100%"}} type="text" placeholder="Search" onChange={(event) => this.onChange(event)} value={this.state.searchText} />
                         </Form>
                     </Col>
-                    <Col xs={12} md={3} style={{textAlign:"right",paddingRight:"10px"}}><LoggedInUser /></Col>
+                    <Col xs={12} md={3} className="no-mobile"><LoggedInUser /></Col>
                     </Row>
                 </div>
                 <Container style={{ textAlign: "center" }}>
