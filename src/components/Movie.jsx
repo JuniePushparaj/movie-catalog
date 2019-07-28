@@ -6,8 +6,8 @@ import BaseConfig from '../config/base-config';
 const Movie = (props)=>{
     const { key, src, name, year, imDbId, type } = props;
 return(
-    <Card key={key} className="col-lg-2 col-md-2 col-xs-12" style={{margin:"20px 10px 20px 10px",padding:"5px"}}>
-        <Card.Img src={src !== 'N/A' ? src : BaseConfig.noImageUrl} alt={"No Image"} variant="top" height={200} width={300}/>
+    <Card key={key} className="col-lg-2 col-md-2 col-xs-12 no-mobile mobile movies" style={{padding:"5px"}}>
+        <Card.Img src={src !== 'N/A' ? src : BaseConfig.noImageUrl} alt={"No Image"} variant="top" height={200} width={150}/>
         <Card.Body style={{fontSize:"small",margin:"0 auto"}}>
         <Row>Name: {name}</Row>
         <Row>Year: {year}</Row>

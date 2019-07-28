@@ -30,8 +30,25 @@
   }
 
   @media only screen and (min-width: 768px), (min-width: 992px), (min-width: 1200px)  {
-    .no-mobile{
+    .no-mobile.center{
       text-align: right;
     }
+    .no-mobile.movies{
+      margin:20px;
+    }
+    .no-mobile.deck{
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0px 20px 0 20px;
+   }
   } 
+
+  @media only screen and (max-width: 600px),(min-width: 600px) {
+    .mobile.deck{
+      margin: 20px;
+    }
+    .mobile.movies{
+      margin-bottom:10px;
+    }
+  }
   

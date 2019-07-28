@@ -1,11 +1,9 @@
 import React from 'react';
-import { 
-    Form, 
-    FormControl, 
-    Container, Spinner, 
-    CardDeck, 
-    Row, 
-    Col 
+import {
+    Form,
+    FormControl,
+    Row,
+    Col
 } from 'react-bootstrap';
 import Movie from './Movie.jsx';
 import { connect } from 'react-redux';
@@ -30,7 +28,7 @@ class MovieCatalog extends React.Component {
     }
 
     onChange(event) {
-        this.setState({ searchText: event.target.value, page:1 }, () => {
+        this.setState({ searchText: event.target.value, page: 1 }, () => {
             this.searchMovies();
         })
     }
@@ -48,66 +46,60 @@ class MovieCatalog extends React.Component {
     }
 
     render() {
-        const { isFetching, movies, errorMsg, totalResults } = this.props;
-        const pageCount = Math.ceil((parseInt(totalResults)/BaseConfig.pagination));
+        const { movies, errorMsg, totalResults } = this.props;
+        const pageCount = Math.ceil((parseInt(totalResults) / BaseConfig.pagination));
         return (
             <div>
                 <div className="movie-catalog">
                     <Row>
-                    <Col xs={12} md={3}><h3>Movie Catalog</h3></Col>
-                    <Col xs={12} md={6}>
-                        <Form inline>
-                            <FormControl style={{width:"100%"}} type="text" placeholder="Search" onChange={(event) => this.onChange(event)} value={this.state.searchText} />
-                        </Form>
-                    </Col>
-                    <Col xs={12} md={3} className="no-mobile"><LoggedInUser /></Col>
+                        <Col xs={12} md={3}><h3>Movie Catalog</h3></Col>
+                        <Col xs={12} md={6}>
+                            <Form inline>
+                                <FormControl style={{ width: "100%" }} type="text" placeholder="Search" onChange={(event) => this.onChange(event)} value={this.state.searchText} />
+                            </Form>
+                        </Col>
+                        <Col xs={12} md={3} className="no-mobile center"><LoggedInUser /></Col>
                     </Row>
                 </div>
-                <Container style={{ textAlign: "center" }}>
+                <div>
+                    {movies.length > 0 ? (<Row className="mobile no-mobile deck"><b>{`You Searched for: ${this.state.searchText}, ${totalResults} results found`}</b></Row>) : null}
                     {
-                        isFetching ? <Spinner animation="border" variant="primary" /> : null
+                        movies.length > 0 ?
+                            (
+                                <Row className="mobile no-mobile deck">
+                                    {movies.map(item => {
+                                        return (
+                                            <Movie key={uuidv4()} src={item.Poster} name={item.Title} year={item.Year} imDbId={item.imdbID} type={item.Type} />
+                                        );
+                                    })}
+                                </Row>
+                            )
+                            : null
                     }
-                    <div>
-                        {  movies.length > 0 ? (<Row style={{padding:"15px"}}><b>{`You Searched for: ${this.state.searchText}, ${totalResults} results found`}</b></Row>): null}
-                        {
-                            movies.length > 0 ?
-                                (
-                                    new Array(Math.ceil(movies.length / BaseConfig.moviesPerRow))
-                                        .fill(0)
-                                        .map((zero, i) => {
-                                            return (<CardDeck key={uuidv4()}>
-                                                {movies.slice(i * BaseConfig.moviesPerRow, BaseConfig.moviesPerRow * (i + 1)).map(item => {
-                                                    return (
-                                                        <Movie key={item.imDbId} src={item.Poster} name={item.Title} year={item.Year} imDbId={item.imdbID} type={item.Type} />
-                                                    );
-                                                })}
-                                            </CardDeck>);
-                                        })
-
-                                )
-                                : null
-                        }
-                        {
-                            pageCount > 1 ?
-                                (<ReactPaginate
-                                    previousLabel={'<'}
-                                    nextLabel={'>'}
-                                    breakLabel={'...'}
-                                    breakClassName={'break-me'}
-                                    pageCount={pageCount}
-                                    marginPagesDisplayed={2}
-                                    pageRangeDisplayed={5}
-                                    onPageChange={this.handlePageClick}
-                                    containerClassName={'pagination'}
-                                    subContainerClassName={'pages pagination'}
-                                    activeClassName={'active'}
-                                />) : null
-                        }
-                    </div>
+                    {
+                        pageCount > 1 ?
+                            (<Row className="mobile no-mobile deck">
+                                <div style={{ margin: "0px auto" }}>
+                                    <ReactPaginate
+                                        previousLabel={'<'}
+                                        nextLabel={'>'}
+                                        breakLabel={'...'}
+                                        breakClassName={'break-me'}
+                                        pageCount={pageCount}
+                                        marginPagesDisplayed={2}
+                                        pageRangeDisplayed={5}
+                                        onPageChange={this.handlePageClick}
+                                        containerClassName={'pagination'}
+                                        subContainerClassName={'pages pagination'}
+                                        activeClassName={'active'}
+                                    />
+                                </div>
+                            </Row>) : null
+                    }
                     {
                         errorMsg || null
                     }
-                </Container>
+                </div>
             </div>
         )
     }
